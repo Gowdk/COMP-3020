@@ -18,7 +18,7 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    background-color: #fafafa;
+    background-color: white;
     width: 550px;
     }
 
@@ -173,6 +173,10 @@
         </div>
       </div>
     </main>
+
+
+
+    
     <footer class="footer">
 
     </footer>
@@ -221,6 +225,7 @@
       const radio = document.querySelector(`input[name="time"][value="${savedTime}"]`);
       if (radio) radio.checked = true;
     }
+
     // Save selected time whenever a radio is clicked
     container.addEventListener("change", function (e) {
       if (e.target.name === "time") {
