@@ -31,7 +31,7 @@ Dark Mode:
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", Arial, sans-serif;
     background-color: #e8dcc8;
     /* Light tan/brown */
     min-height: 100vh;
@@ -125,8 +125,22 @@ body {
 }
 
 .header-nav-item a {
+    font-family: Arial, Helvetica, sans-serif;
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
+}
+
+.btn-text-link {
+    color: #006eb5; /* UofM Blue */
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s, text-decoration 0.2s;
+}
+
+.btn-text-link:hover {
+    color: #6b4423; /* UofM Brown/Bison on hover */
+    text-decoration: underline;
     font-size: 1.1rem;
     font-weight: bold;
     padding: 5px 0;
@@ -136,6 +150,21 @@ body {
 
 .header-nav-item a:hover {
     color: white;
+}
+
+/* Style for the link corresponding to the current page */
+.header-nav-item.nav-active a {
+    color: white !important;
+    font-weight: 700;
+    cursor: default;
+    opacity: 1;
+    border-bottom: 2px solid white;
+}
+
+/* Ensure active link doesn't change color or underline on hover */
+.header-nav-item.nav-active a:hover {
+    color: white !important;
+    text-decoration: none !important;
 }
 
 .logo {
@@ -515,8 +544,6 @@ body {
 /* Container for the question box */
 .questionnaire-container {
     position: relative;
-    /* This makes the questionnaire
-    the main reference point*/
     width: 1100px;
     /* fixed width */
     height: 700px;
@@ -634,6 +661,153 @@ body {
 .btn-next:hover {
     background: #ffb81c;
 }
+/*===== TIME SELECTOR (Q1 - When Are You Free) =====*/
+.time-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  justify-items: stretch;
+  align-content: flex-start;
+
+  /* Make it blend into the page */
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  width: 100%;
+  max-width: 650px;
+  padding: 0;
+  border-radius: 0;
+  margin: 12px 0 0;
+}
+
+/* Each time option becomes a pill-style card */
+.time-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Hide native radio, we’ll style the label instead */
+.time-slot input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Pill look for unselected times */
+.time-slot label {
+  display: block;
+  width: 100%;
+  padding: 10px 8px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  color: #333;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.1s ease;
+}
+
+/* Hover state */
+.time-slot label:hover {
+  background-color: #f0f7ff;
+  border-color: #006eb5;
+  box-shadow: 0 3px 8px rgba(0, 110, 181, 0.18);
+  transform: translateY(-1px);
+}
+
+/* Selected pill */
+.time-slot input[type="radio"]:checked + label {
+  background-color: #006eb5;
+  color: #ffffff;
+  border-color: #005493;
+  box-shadow: 0 4px 10px rgba(0, 110, 181, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Custom time row spanning full width */
+.custom-time-slot {
+  grid-column: 1 / -1;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.custom-time-slot label#custom-time-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.custom-time-slot .custom-time-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.custom-time-slot select {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #d0d7de;
+  background-color: #ffffff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.custom-time-slot select:focus {
+  outline: none;
+  border-color: #006eb5;
+  box-shadow: 0 0 0 2px rgba(0, 110, 181, 0.2);
+}
+
+/* Custom time label styled like other pills */
+#custom-time-pill {
+  display: block;
+  width: 100%;
+  padding: 10px 8px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  color: #333;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.1s ease;
+}
+
+/* Hover */
+#custom-time-pill:hover {
+  background-color: #f0f7ff;
+  border-color: #006eb5;
+  box-shadow: 0 3px 8px rgba(0, 110, 181, 0.18);
+  transform: translateY(-1px);
+}
+
+/* Selected highlight */
+#time-custom:checked + #custom-time-pill {
+  background-color: #006eb5;
+  color: #ffffff;
+  border-color: #005493;
+  box-shadow: 0 4px 10px rgba(0, 110, 181, 0.35);
+  transform: translateY(-1px);
+}
 
 /* ===== WORK SLIDER (Q4 - How Much Work) ===== */
 .work-slider-container {
@@ -676,14 +850,11 @@ body {
 /* ===== RESULTS PAGE (All Events) ===== */
 .results-container {
     max-width: 1500px;
-    /* Large container width */
     min-width: 1000;
     height: 1000px;
     max-height: 1800;
     padding: 20px 40px;
-    /* Padding inside the border */
     background-color: #f8f8f8;
-    /* Light background */
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border: 3px solid #006eb5;
@@ -695,7 +866,6 @@ body {
     display: grid;
     /* Use grid instead of flex for reliable column sizing */
     grid-template-columns: minmax(550px, 1fr) 2fr;
-    /* Event list min 550px, Map gets 2 parts space */
     gap: 30px;
     margin-top: 30px;
     height: calc(100% - 80px);
@@ -705,6 +875,8 @@ body {
 
 /* Scrollable Partition for Event Cards */
 .event-cards-scroll {
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
     background: white;
     border: 2px solid #006eb5;
@@ -781,6 +953,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 
 /* Map Placeholder (Right Side) */
 .map-container {
@@ -1278,7 +1451,7 @@ body.dark-mode .time-selection {
 }
 
 body.dark-mode .time-slot label {
-    color: #ffffff !important;
+    color: black !important;
 }
 
 body.dark-mode .time-slot input[type="radio"] {
@@ -1477,7 +1650,7 @@ body.dark-mode .event-card.expanded {
 
 body.dark-mode .event-card.expanded .back-button {
     background-color: #4db8d8;
-    color: #0d2438;
+    color: #ffffff;
     border: 1px solid #4db8d8;
 }
 
